@@ -142,3 +142,16 @@
     color: var(--color-foreground);
   }
 }
+
+@theme inline {
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
+}
+:root {
+  --background: oklch(0.985 0.005 160);
+  --primary: oklch(0.52 0.12 165);
+  --primary-foreground: oklch(0.99 0 0);
+  --accent: oklch(0.9 0.09 85);
+  --accent-foreground: oklch(0.3 0.06 70);
+  --ring: oklch(0.52 0.12 165);
+}

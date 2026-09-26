@@ -8,6 +8,7 @@ import { Confirm } from "@/components/ConfirmButton";
 import { TaskList } from "@/components/TaskList";
 import { usePeople } from "@/hooks/use-people";
 import { supabase } from "@/integrations/supabase/client";
+import type { TablesUpdate } from "@/integrations/supabase/types";
 import { fetchMembers, removeProject, upsertProject, useAppDispatch, useAppSelector } from "@/store";
 import { label, type Task, type TaskInput } from "@/lib/domain";
 
@@ -44,7 +45,7 @@ function ProjectDetail() {
 
   if (!project) return pStatus === "loading" || pStatus === "idle" ? <Loading text="Loading project..." /> : <Empty text="Project not found or you don't have access." />;
 
-  const saveProject = async (patch: Parameters<typeof supabase.from<"projects">>[0] extends never ? never : Record<string, unknown>) => {
+  const saveProject = async (patch: TablesUpdate<"projects">) => {
     const { data, error } = await supabase.from("projects").update(patch).eq("id", id).select().single();
     if (error) { toast.error(error.message); return false; }
     dispatch(upsertProject(data)); return true;

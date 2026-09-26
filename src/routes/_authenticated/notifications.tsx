@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { Empty, ErrorState, Loading } from "@/components/states";
 import { fetchNotifications, markAllRead, markRead, useAppDispatch, useAppSelector } from "@/store";
@@ -26,7 +26,7 @@ function NotificationsPage() {
             <div key={n.id} className={`flex items-center justify-between gap-3 p-3 text-sm ${n.is_read ? "text-muted-foreground" : "font-medium"}`}>
               <div className="flex items-center gap-2">
                 {!n.is_read && <span className="h-2 w-2 rounded-full bg-primary" />}
-                {n.link ? <Link to={n.link} className="hover:underline">{n.message}</Link> : n.message}
+                {n.link ? <a href={n.link} className="hover:underline">{n.message}</a> : n.message}
               </div>
               <div className="flex items-center gap-2 text-xs">
                 <span>{new Date(n.created_at).toLocaleString()}</span>
