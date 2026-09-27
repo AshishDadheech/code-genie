@@ -64,7 +64,7 @@ const projectsSlice = createSlice({
 
 /* ---------------- tasks ---------------- */
 export type TaskQuery = {
-  projectId?: string; search: string; status: string; priority: string; assignee: string;
+  projectId?: string | undefined; search: string; status: string; priority: string; assignee: string;
   due: string; sort: string; page: number; pageSize: number;
 };
 export const fetchTasks = createAsyncThunk("tasks/fetch", async (q: TaskQuery) => {
@@ -82,7 +82,7 @@ export const fetchTasks = createAsyncThunk("tasks/fetch", async (q: TaskQuery) =
     const w = new Date(); w.setDate(w.getDate() + 7);
     query = query.gte("due_date", today).lte("due_date", w.toISOString().slice(0, 10));
   } else if (q.due === "none") query = query.is("due_date", null);
-  const [col, dir] = (q.sort || "created_at:desc").split(":");
+  const [col = "created_at", dir = "desc"] = (q.sort || "created_at:desc").split(":");
   query = query.order(col === "priority" ? "priority_rank" : col, { ascending: dir === "asc", nullsFirst: false });
   const from = (q.page - 1) * q.pageSize;
   const { data, error, count } = await query.range(from, from + q.pageSize - 1);

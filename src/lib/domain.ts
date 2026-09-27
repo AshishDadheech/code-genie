@@ -32,7 +32,7 @@ export const authSchema = z.object({
 export const projectSchema = z
   .object({
     name: z.string().trim().min(2, "Project name must be at least 2 characters").max(100),
-    description: z.string().trim().max(2000).default(""),
+    description: z.string().trim().max(2000),
     status: z.enum(PROJECT_STATUSES),
     priority: z.enum(PROJECT_PRIORITIES),
     start_date: optDate,
@@ -46,7 +46,7 @@ export type ProjectInput = z.infer<typeof projectSchema>;
 
 export const taskSchema = z.object({
   title: z.string().trim().min(2, "Task title must be at least 2 characters").max(200),
-  description: z.string().trim().max(5000).default(""),
+  description: z.string().trim().max(5000),
   status: z.enum(TASK_STATUSES),
   priority: z.enum(TASK_PRIORITIES),
   assigned_to: z.string().optional(),

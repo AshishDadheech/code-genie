@@ -10,8 +10,8 @@ type Props = {
   projectId?: string;
   people: Profile[];
   canEdit: (t: Task) => boolean;
-  onEdit?: (t: Task) => void;
-  onDelete?: (t: Task) => void;
+  onEdit?: ((t: Task) => void) | undefined;
+  onDelete?: ((t: Task) => void) | undefined;
   refreshKey?: number;
 };
 
