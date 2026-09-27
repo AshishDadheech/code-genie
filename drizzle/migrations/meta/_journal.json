@@ -8,6 +8,13 @@
       "when": 1790436493175,
       "tag": "0000_task_management_schema",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1790486740784,
+      "tag": "0001_projects_owner_select",
+      "breakpoints": true
     }
   ]
 }
