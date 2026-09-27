@@ -1,0 +1,1 @@
+UPDATE public.profiles SET full_name='Ashish Dadheech' WHERE id='4406a2da-4a99-4f77-b1eb-13a9c356d42a';
