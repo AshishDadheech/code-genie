@@ -14,7 +14,7 @@ import {
 const Err = ({ m }: { m?: string | undefined }) => (m ? <p className="text-xs text-destructive">{m}</p> : null);
 
 export function ProjectDialog({ open, onOpenChange, initial, onSubmit }: {
-  open: boolean; onOpenChange: (o: boolean) => void; initial?: Partial<ProjectInput>; onSubmit: (v: ProjectInput) => Promise<void>;
+  open: boolean; onOpenChange: (o: boolean) => void; initial?: Partial<ProjectInput> | undefined; onSubmit: (v: ProjectInput) => Promise<void>;
 }) {
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<ProjectInput>({
     resolver: zodResolver(projectSchema),
@@ -41,7 +41,7 @@ export function ProjectDialog({ open, onOpenChange, initial, onSubmit }: {
 }
 
 export function TaskDialog({ open, onOpenChange, initial, people, onSubmit }: {
-  open: boolean; onOpenChange: (o: boolean) => void; initial?: Partial<TaskInput>; people: Profile[]; onSubmit: (v: TaskInput) => Promise<void>;
+  open: boolean; onOpenChange: (o: boolean) => void; initial?: Partial<TaskInput> | undefined; people: Profile[]; onSubmit: (v: TaskInput) => Promise<void>;
 }) {
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<TaskInput>({
     resolver: zodResolver(taskSchema),

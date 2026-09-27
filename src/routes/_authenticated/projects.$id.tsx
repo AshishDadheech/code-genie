@@ -102,7 +102,7 @@ function ProjectDetail() {
             </select>
             <Button disabled={!addId} onClick={async () => {
               const { error } = await supabase.from("project_members").insert({ project_id: id, user_id: addId });
-              if (error) return toast.error(error.message);
+              if (error) { toast.error(error.message); return; }
               toast.success("Member added"); setAddId(""); dispatch(fetchMembers(id));
             }}>Add</Button>
           </div>
@@ -130,19 +130,19 @@ function ProjectDetail() {
       <Confirm open={confirmDel} onOpenChange={setConfirmDel} title="Delete project?" description="This permanently deletes the project and all its tasks."
         onConfirm={async () => {
           const { error } = await supabase.from("projects").delete().eq("id", id);
-          if (error) return toast.error(error.message);
+          if (error) { toast.error(error.message); return; }
           dispatch(removeProject(id)); toast.success("Project deleted"); navigate({ to: "/projects" });
         }} />
       <Confirm open={!!delTask} onOpenChange={(o) => !o && setDelTask(null)} title="Delete task?" description={delTask?.title}
         onConfirm={async () => {
           const { error } = await supabase.from("tasks").delete().eq("id", delTask!.id);
-          if (error) return toast.error(error.message);
+          if (error) { toast.error(error.message); return; }
           toast.success("Task deleted"); setDelTask(null); setRefresh((r) => r + 1);
         }} />
       <Confirm open={!!removeMember} onOpenChange={(o) => !o && setRemoveMember(null)} title="Remove member?" description="They will lose access to this project." action="Remove"
         onConfirm={async () => {
           const { error } = await supabase.from("project_members").delete().eq("project_id", id).eq("user_id", removeMember!);
-          if (error) return toast.error(error.message);
+          if (error) { toast.error(error.message); return; }
           toast.success("Member removed"); setRemoveMember(null); dispatch(fetchMembers(id));
         }} />
     </div>

@@ -33,11 +33,11 @@ function AuthPage() {
         email: v.email, password: v.password,
         options: { emailRedirectTo: window.location.origin + "/dashboard", data: { full_name: v.full_name ?? "" } },
       });
-      if (error) return toast.error(error.message);
+      if (error) { toast.error(error.message); return; }
       if (!data.session) { toast.success("Check your email to confirm your account."); setMode("login"); return; }
     } else {
       const { error } = await supabase.auth.signInWithPassword({ email: v.email, password: v.password });
-      if (error) return toast.error(error.message);
+      if (error) { toast.error(error.message); return; }
     }
     navigate({ to: "/dashboard" });
   });
