@@ -1,0 +1,1 @@
+- [x] Build task management app (auth, projects, members, tasks, dashboard, notifications)

@@ -64,7 +64,7 @@ const projectsSlice = createSlice({
 
 /* ---------------- tasks ---------------- */
 export type TaskQuery = {
-  projectId?: string; search: string; status: string; priority: string; assignee: string;
+  projectId?: string | undefined; search: string; status: string; priority: string; assignee: string;
   due: string; sort: string; page: number; pageSize: number;
 };
 export const fetchTasks = createAsyncThunk("tasks/fetch", async (q: TaskQuery) => {

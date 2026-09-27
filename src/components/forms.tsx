@@ -11,7 +11,7 @@ import {
   type Profile, type ProjectInput, type TaskInput,
 } from "@/lib/domain";
 
-const Err = ({ m }: { m?: string }) => (m ? <p className="text-xs text-destructive">{m}</p> : null);
+const Err = ({ m }: { m?: string | undefined }) => (m ? <p className="text-xs text-destructive">{m}</p> : null);
 
 export function ProjectDialog({ open, onOpenChange, initial, onSubmit }: {
   open: boolean; onOpenChange: (o: boolean) => void; initial?: Partial<ProjectInput>; onSubmit: (v: ProjectInput) => Promise<void>;
